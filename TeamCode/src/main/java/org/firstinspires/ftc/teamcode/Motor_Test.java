@@ -5,13 +5,15 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 @TeleOp(name = "Motor Test")
-public class MotorTest extends OpMode {
+public class Motor_Test extends OpMode {
 
-    private DcMotor motor;
+    private DcMotor rightMotor;
+    private DcMotor leftMotor;
 
     @Override
     public void init() {
-        motor = hardwareMap.get(DcMotor.class, "motor");
+        rightMotor = hardwareMap.get(DcMotor.class, "rightMotor");
+        leftMotor = hardwareMap.get(DcMotor.class, "leftMotor");
 
         telemetry.addData("Status", "Initialized");
         telemetry.update();
@@ -19,11 +21,14 @@ public class MotorTest extends OpMode {
 
     @Override
     public void loop() {
-        double power = -gamepad1.left_stick_y;
+        double leftPower = -gamepad1.left_stick_y;
+        double rightPower = -gamepad1.right_stick_y;
 
-        motor.setPower(power);
+        leftMotor.setPower(leftPower);
+        rightMotor.setPower(rightPower);
 
-        telemetry.addData("Power", power);
+        telemetry.addData("Left Power", leftPower);
+        telemetry.addData("Right Power", rightPower);
         telemetry.update();
     }
 }
