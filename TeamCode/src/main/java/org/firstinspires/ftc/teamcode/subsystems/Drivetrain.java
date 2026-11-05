@@ -11,6 +11,8 @@ public class Drivetrain {
     public Drivetrain(HardwareMap hardwareMap) {
         rightMotor = hardwareMap.get(DcMotor.class, "rightMotor");
         leftMotor = hardwareMap.get(DcMotor.class, "leftMotor");
+
+        rightMotor.setDirection(DcMotor.Direction.REVERSE);
     }
 
     public void arcadeDrive(double drive, double turn) {
